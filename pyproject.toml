@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "course-work-5"
+version = "0.1.0"
+description = "Habit tracker backend SPA project"
+authors = ["Sergey <new_day_has_come@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+django = ">=6.1"
+djangorestframework = "*"
+django-environ = "*"
+djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
+celery = "*"
+redis = "*"
+drf-yasg = "*"
+psycopg2-binary = "*"
+black = "^26.5.1"
+djangorestframework-stubs = "^3.18.1"
+isort = "^8.0.1"
+requests = "^2.34.2"
+coverage = "^7.16.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

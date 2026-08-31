@@ -1,0 +1,34 @@
+from django.contrib import admin
+from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from rest_framework.routers import SimpleRouter
+
+from habits.views import HabitViewSet, PublicHabitListAPIView
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Habits Tracker API",
+        default_version="v1",
+        description="Документация для трекера полезных привычек",
+    ),
+    public=True,
+    permission_classes=[permissions.AllowAny],
+)
+
+router = SimpleRouter()
+router.register("habits", HabitViewSet, basename="habits")
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/users/", include("users.urls", namespace="users")),
+    path("api/", include(router.urls)),
+    path("api/public-habits/", PublicHabitListAPIView.as_view(), name="public-habits"),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+]

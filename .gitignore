@@ -1,0 +1,23 @@
+# Секреты и окружение
+.env
+
+# Файлы базы данных (если вдруг локально появится sqlite)
+*.sqlite3
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+
+.idea/
+
+
+.venv/
+.env/
+venv/
+.env/
