@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+import sys
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -84,6 +86,12 @@ DATABASES = {
         "PORT": env.int("DB_PORT", default=5432),
     }
 }
+
+if "test" in sys.argv:
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
