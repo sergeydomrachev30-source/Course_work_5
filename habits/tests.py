@@ -115,4 +115,3 @@ class CeleryTasksTestCase(APITestCase):
         check_habits_and_send_reminders()
 
         mock_send.assert_called()
-
