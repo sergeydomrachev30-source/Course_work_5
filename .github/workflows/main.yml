@@ -72,7 +72,14 @@ jobs:
         run: poetry install --no-interaction --no-root
 
       - name: Run Django Tests
+        env:
+          SECRET_KEY: "test-secret-key-for-github-actions"
+          DEBUG: "True"
+          DB_NAME: "test_db"
+          DB_USER: "test_user"
+          DB_PASSWORD: "test_password"
         run: poetry run python manage.py test
+
 
   deploy:
     runs-on: ubuntu-latest
