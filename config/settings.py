@@ -21,7 +21,7 @@ TELEGRAM_TOKEN = env.str("TELEGRAM_TOKEN", default="")
 
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "158.160.235.91"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
