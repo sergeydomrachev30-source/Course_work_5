@@ -93,6 +93,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             # Заходим в папку проекта на сервере 
             sudo mkdir -p /var/www/Course_work_5
@@ -101,7 +102,7 @@ jobs:
             
             # Клонируем репозиторий, если папки еще нет
             if [ ! -d ".git" ]; then
-              git clone https://github.com/sergeydomrachev30-source/Course_work_5.git .
+              git clone https://github.com .
             else
               git pull origin develop
             fi
