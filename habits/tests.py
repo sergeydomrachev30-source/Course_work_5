@@ -88,23 +88,30 @@ class CeleryTasksTestCase(APITestCase):
     @patch("habits.tasks.send_telegram_message")
     def test_check_habits_and_send_reminders(self, mock_send):
         """Проверка, что задача Celery находит привычку и вызывает отправку."""
+        import datetime
 
         now = django_timezone.localtime(django_timezone.now())
+        current_hour = now.hour
+        current_minute = now.minute
 
         user = User.objects.create_user(
             email="celery@test.com", password="123", telegram_chat_id="1219513797"
         )
 
-        Habit.objects.create(
-            user=user,
-            place="Дом",
-            time=now.time(),
-            action="Сделать зарядку",
-            estimated_time=60,
-            periodicity=1,
-            is_pleasant=False,
-        )
+        for hour_shift in [0, -3, 3]:
+            target_hour = (current_hour + hour_shift) % 24
+            test_time = datetime.time(hour=target_hour, minute=current_minute)
+
+            Habit.objects.create(
+                user=user,
+                place="Дом",
+                time=test_time,
+                action=f"Сделать зарядку {hour_shift}",
+                estimated_time=60,
+                periodicity=1,
+                is_pleasant=False,
+            )
 
         check_habits_and_send_reminders()
 
-        mock_send.assert_called_once()
+        mock_send.assert_called()

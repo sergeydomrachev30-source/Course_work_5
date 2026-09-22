@@ -21,7 +21,7 @@ TELEGRAM_TOKEN = env.str("TELEGRAM_TOKEN", default="")
 
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "158.160.235.91"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+import sys
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -84,6 +86,12 @@ DATABASES = {
         "PORT": env.int("DB_PORT", default=5432),
     }
 }
+
+if "test" in sys.argv:
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -109,6 +117,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "static"
 
 MAILERS = {
     "default": {
