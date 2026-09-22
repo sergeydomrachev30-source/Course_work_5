@@ -103,9 +103,9 @@ jobs:
             # Клонируем репозиторий, если папки еще нет
             if [ ! -d ".git" ]; then
               rm -rf * .[!.]*
-              git clone https://github.com/sergeydomrachev30-source/Course_work_5.git .
+              git clone -b feature/course_work_cicd https://github.com/sergeydomrachev30-source/Course_work_5.git .
             else
-              git pull origin develop
+              git pull origin feature/course_work_cicd
             fi
             
             # Собираем актуальный файл .env из секретов GitHub на сервере
