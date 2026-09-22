@@ -102,6 +102,7 @@ jobs:
             
             # Клонируем репозиторий, если папки еще нет
             if [ ! -d ".git" ]; then
+              rm -rf * .[!.]*
               git clone https://github.com/sergeydomrachev30-source/Course_work_5.git .
             else
               git pull origin develop
