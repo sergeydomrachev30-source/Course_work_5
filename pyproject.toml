@@ -21,6 +21,7 @@ djangorestframework-stubs = "^3.18.1"
 isort = "^8.0.1"
 requests = "^2.34.2"
 coverage = "^7.16.0"
+gunicorn = "^26.2.0"
 
 [build-system]
 requires = ["poetry-core"]
