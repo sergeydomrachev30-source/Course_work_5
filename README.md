@@ -29,7 +29,7 @@
 
 1. **Клонируйте репозиторий:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/sergeydomrachev30-source/Course_work_5.git
    cd Course_work_5
    ```
 
